@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">RenatoCouto_AppProviderAlunos</string>
+    <string name="sair">Sair</string>
+    <string name="provedor_aluno">Provedor Aluno</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="listar">Listar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="salvar">Salvar</string>
+    <string name="limpar">Limpar</string>
+    <string name="insira_valores_v_lidos_para_idade_e_notas">Insira valores válidos para idade e notas.</string>
+    <string name="aluno_salvo_com_sucesso">Aluno salvo com sucesso!</string>
+    <string name="por_favor_preencha_todos_os_campos">Por favor, preencha todos os campos.</string>
+    <string name="alunos">Alunos</string>
+    <string name="notas">Notas</string>
+    <string name="ac_es">Acões</string>
+    <string name="editar_disciplina">Editar disciplina</string>
+    <string name="excluir_disciplina">Excluir disciplina</string>
+    <string name="carregando">carregando</string>
+    <string name="sem_aluno_cadastrado">Sem aluno cadastrado</string>
+</resources>
