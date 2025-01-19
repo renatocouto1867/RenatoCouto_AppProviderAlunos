@@ -4,8 +4,10 @@ package com.example.renatocouto_appprovideralunos.entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "alunos")
-public class Aluno {
+public class Aluno implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private long id;

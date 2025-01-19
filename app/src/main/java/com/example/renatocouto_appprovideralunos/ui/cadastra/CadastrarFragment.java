@@ -23,6 +23,8 @@ import java.util.Objects;
  */
 public class CadastrarFragment extends Fragment {
     private AlunoDao alunoDao;
+    private boolean isEdicao=false;
+    private Aluno aluno;
     private Button btnSalvar, btnLimpar;
     private EditText editTextNome, editTextIdade, editTextNota1, editTextNota2, editTextNota3;
 
@@ -56,8 +58,24 @@ public class CadastrarFragment extends Fragment {
 
         inicializarViews(view);
         configurarBotoes();
-
+        inicializaArguments();
         return view;
+    }
+
+    private void inicializaArguments() {
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            aluno = (Aluno) bundle.getSerializable("aluno");
+            editTextNome.setText(aluno.getNome());
+            editTextIdade.setText(String.valueOf(aluno.getIdade()));
+            editTextNota1.setText(String.valueOf(aluno.getNota1()));
+            editTextNota2.setText(String.valueOf(aluno.getNota2()));
+            editTextNota3.setText(String.valueOf(aluno.getNota2()));
+            isEdicao=true;
+        } else {
+            aluno = new Aluno();
+            isEdicao=false;
+        }
     }
 
     private void inicializarViews(View view) {
@@ -106,14 +124,17 @@ public class CadastrarFragment extends Fragment {
             return;
         }
 
-        Aluno aluno = new Aluno();
         aluno.setNome(nome);
         aluno.setIdade(idade);
         aluno.setNota1(nota1);
         aluno.setNota2(nota2);
         aluno.setNota3(nota3);
 
-        alunoDao.inserir(aluno);
+        if (isEdicao){
+            alunoDao.atualizar(aluno);
+        } else alunoDao.inserir(aluno);
+
+
         Mensagens.showSucesso(requireView(), getString(R.string.aluno_salvo_com_sucesso));
 
         limparCampos();

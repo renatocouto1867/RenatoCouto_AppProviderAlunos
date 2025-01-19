@@ -1,12 +1,13 @@
 package com.example.renatocouto_appprovideralunos.ui.listar;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,14 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.example.renatocouto_appprovideralunos.R;
-import com.example.renatocouto_appprovideralunos.auxiliar.Mensagens;
 import com.example.renatocouto_appprovideralunos.dao.AlunoDao;
 import com.example.renatocouto_appprovideralunos.dao.MyDataBase;
 import com.example.renatocouto_appprovideralunos.entity.Aluno;
+import com.example.renatocouto_appprovideralunos.ui.cadastra.CadastrarFragment;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class ListarFragment extends Fragment {
 
@@ -77,7 +76,9 @@ public class ListarFragment extends Fragment {
             textViewProgress.setVisibility(View.GONE);
 
         } else {
-            Mensagens.showAlerta(requireView(), getString(R.string.sem_aluno_cadastrado));
+            progressBar.setVisibility(View.GONE);
+            textViewProgress.setVisibility(View.VISIBLE);
+            textViewProgress.setText(R.string.sem_aluno_cadastrado);
         }
     }
 
@@ -87,15 +88,49 @@ public class ListarFragment extends Fragment {
         itemListarAlunoAdapter = new ItemListarAlunoAdapter(alunoList, new ItemListarAlunoAdapter.OnItemClickListener() {
             @Override
             public void onEditClick(Aluno aluno) {
-                Toast.makeText(requireActivity(), "Implementar edit", Toast.LENGTH_SHORT).show();
+                editaAluno(aluno);
             }
 
             @Override
             public void onDeleteClick(Aluno aluno) {
-                Toast.makeText(requireActivity(), "Implementar excluir", Toast.LENGTH_SHORT).show();
+                deleteAluno(aluno);
             }
+
         });
 
         recyclerViewAluno.setAdapter(itemListarAlunoAdapter);
+    }
+
+    private void editaAluno(Aluno aluno) {
+        Bundle result = new Bundle();
+        result.putSerializable("aluno", aluno);
+
+        Fragment fragment = CadastrarFragment.newInstance();
+        fragment.setArguments(result);
+
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    private void deleteAluno(Aluno aluno) {
+        new AlertDialog.Builder(getContext()).setTitle(R.string.confirmar_exclusao)
+                .setMessage(getString(R.string.realmente_deseja_deletar) + aluno.getNome() + "?")
+                .setPositiveButton(getString(R.string.deletar), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //sim
+                        alunoDao.deletar(aluno);
+                        carregarAlunos();
+                    }
+                }).setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //não
+                        dialog.dismiss();
+                    }
+                }).create().show();
+
     }
 }

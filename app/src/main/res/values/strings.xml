@@ -18,4 +18,9 @@
     <string name="excluir_disciplina">Excluir disciplina</string>
     <string name="carregando">carregando</string>
     <string name="sem_aluno_cadastrado">Sem aluno cadastrado</string>
+    <string name="confirmar_exclusao">Confirmar Exclusão</string>
+    <string name="realmente_deseja_deletar">"Você realmente deseja deletar o aluno: "</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="deletar">deletar</string>
+
 </resources>
