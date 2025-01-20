@@ -10,11 +10,13 @@ import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
+import com.example.renatocouto_appprovideralunos.MainActivity;
 import com.example.renatocouto_appprovideralunos.R;
 import com.example.renatocouto_appprovideralunos.auxiliar.Mensagens;
 import com.example.renatocouto_appprovideralunos.dao.AlunoDao;
 import com.example.renatocouto_appprovideralunos.dao.MyDataBase;
 import com.example.renatocouto_appprovideralunos.entity.Aluno;
+import com.example.renatocouto_appprovideralunos.ui.listar.ListarFragment;
 
 import java.util.Objects;
 
@@ -135,7 +137,16 @@ public class CadastrarFragment extends Fragment {
             return;
         }
 
-        limparCampos();
+        iniciarFragamentList();
+
+    }
+
+    private void iniciarFragamentList() {
+        Fragment fragment = ListarFragment.newInstance();
+        MainActivity activity = (MainActivity) getActivity();
+        if (activity != null) {
+            activity.iniciarFragment(fragment,R.string.listar);
+        }
     }
 
     private boolean validaNota(double nota) {

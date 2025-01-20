@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.example.renatocouto_appprovideralunos.MainActivity;
 import com.example.renatocouto_appprovideralunos.R;
 import com.example.renatocouto_appprovideralunos.dao.AlunoDao;
 import com.example.renatocouto_appprovideralunos.dao.MyDataBase;
@@ -110,10 +111,11 @@ public class ListarFragment extends Fragment {
         Fragment fragment = CadastrarFragment.newInstance();
         fragment.setArguments(result);
 
-        requireActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .addToBackStack(null)
-                .commit();
+        MainActivity activity = (MainActivity) getActivity();
+        if (activity != null) {
+            activity.iniciarFragment(fragment,R.string.editar_cadastro);
+        }
+
     }
 
     private void deleteAluno(Aluno aluno) {
@@ -135,4 +137,5 @@ public class ListarFragment extends Fragment {
                 }).create().show();
 
     }
+
 }
