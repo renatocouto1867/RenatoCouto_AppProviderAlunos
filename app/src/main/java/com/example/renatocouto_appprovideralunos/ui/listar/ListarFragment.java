@@ -31,7 +31,7 @@ public class ListarFragment extends Fragment {
     private TextView textViewProgress;
 
     public ListarFragment() {
-        // Construtor público obrigatório
+
     }
 
     public static ListarFragment newInstance() {
@@ -71,6 +71,7 @@ public class ListarFragment extends Fragment {
         List<Aluno> alunoList = alunoDao.buscarTodos();
 
         if (alunoList != null && !alunoList.isEmpty()) {
+            progressBar.setVisibility(View.VISIBLE);
             configurarRecyclerView(alunoList);
             progressBar.setVisibility(View.GONE);
             textViewProgress.setVisibility(View.GONE);
@@ -78,6 +79,7 @@ public class ListarFragment extends Fragment {
         } else {
             progressBar.setVisibility(View.GONE);
             textViewProgress.setVisibility(View.VISIBLE);
+            configurarRecyclerView(alunoList);
             textViewProgress.setText(R.string.sem_aluno_cadastrado);
         }
     }

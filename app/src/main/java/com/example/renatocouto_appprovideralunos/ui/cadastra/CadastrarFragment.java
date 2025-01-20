@@ -23,13 +23,12 @@ import java.util.Objects;
  */
 public class CadastrarFragment extends Fragment {
     private AlunoDao alunoDao;
-    private boolean isEdicao=false;
+    private boolean isEdicao = false;
     private Aluno aluno;
     private Button btnSalvar, btnLimpar;
     private EditText editTextNome, editTextIdade, editTextNota1, editTextNota2, editTextNota3;
 
     public CadastrarFragment() {
-        // Construtor público vazio necessário.
     }
 
     public static CadastrarFragment newInstance() {
@@ -71,10 +70,10 @@ public class CadastrarFragment extends Fragment {
             editTextNota1.setText(String.valueOf(aluno.getNota1()));
             editTextNota2.setText(String.valueOf(aluno.getNota2()));
             editTextNota3.setText(String.valueOf(aluno.getNota2()));
-            isEdicao=true;
+            isEdicao = true;
         } else {
             aluno = new Aluno();
-            isEdicao=false;
+            isEdicao = false;
         }
     }
 
@@ -113,29 +112,28 @@ public class CadastrarFragment extends Fragment {
             nota1 = Double.parseDouble(nota1Str);
             nota2 = Double.parseDouble(nota2Str);
             nota3 = Double.parseDouble(nota3Str);
+
+            boolean isNotaValida = validaNota(nota1) && validaNota(nota2) && validaNota(nota3);
+            if (!isNotaValida) {
+                Mensagens.showErro(requireView(), getString(R.string.insira_valores_v_lidos_para_idade_e_notas));
+                return;
+            }
+
+            aluno.setNome(nome);
+            aluno.setIdade(idade);
+            aluno.setNota1(nota1);
+            aluno.setNota2(nota2);
+            aluno.setNota3(nota3);
+
+            if (isEdicao) {
+                alunoDao.atualizar(aluno);
+            } else alunoDao.inserir(aluno);
+            Mensagens.showSucesso(requireView(), getString(R.string.aluno_salvo_com_sucesso));
+
         } catch (NumberFormatException e) {
             Mensagens.showErro(requireView(), getString(R.string.insira_valores_v_lidos_para_idade_e_notas));
             return;
         }
-
-        boolean isNotaValida = validaNota(nota1) && validaNota(nota2) && validaNota(nota3);
-        if (!isNotaValida) {
-            Mensagens.showErro(requireView(), getString(R.string.insira_valores_v_lidos_para_idade_e_notas));
-            return;
-        }
-
-        aluno.setNome(nome);
-        aluno.setIdade(idade);
-        aluno.setNota1(nota1);
-        aluno.setNota2(nota2);
-        aluno.setNota3(nota3);
-
-        if (isEdicao){
-            alunoDao.atualizar(aluno);
-        } else alunoDao.inserir(aluno);
-
-
-        Mensagens.showSucesso(requireView(), getString(R.string.aluno_salvo_com_sucesso));
 
         limparCampos();
     }
