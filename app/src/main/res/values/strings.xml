@@ -21,5 +21,10 @@
     <string name="realmente_deseja_deletar">"Você realmente deseja deletar o aluno: "</string>
     <string name="cancelar">Cancelar</string>
     <string name="deletar">deletar</string>
+    <string name="nome_aluno">Nome Aluno</string>
+    <string name="idade">Idade</string>
+    <string name="nota1">Nota1</string>
+    <string name="nota2">Nota2</string>
+    <string name="nota3">Nota3</string>
 
 </resources>

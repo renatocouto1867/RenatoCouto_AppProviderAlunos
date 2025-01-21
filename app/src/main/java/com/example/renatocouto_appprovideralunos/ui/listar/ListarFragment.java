@@ -71,15 +71,16 @@ public class ListarFragment extends Fragment {
     private void carregarAlunos() {
         List<Aluno> alunoList = alunoDao.buscarTodos();
 
+        progressBar.setVisibility(View.VISIBLE);
+        textViewProgress.setVisibility(View.VISIBLE);
+
         if (alunoList != null && !alunoList.isEmpty()) {
-            progressBar.setVisibility(View.VISIBLE);
             configurarRecyclerView(alunoList);
             progressBar.setVisibility(View.GONE);
             textViewProgress.setVisibility(View.GONE);
 
         } else {
             progressBar.setVisibility(View.GONE);
-            textViewProgress.setVisibility(View.VISIBLE);
             configurarRecyclerView(alunoList);
             textViewProgress.setText(R.string.sem_aluno_cadastrado);
         }
@@ -113,7 +114,7 @@ public class ListarFragment extends Fragment {
 
         MainActivity activity = (MainActivity) getActivity();
         if (activity != null) {
-            activity.iniciarFragment(fragment,R.string.editar_cadastro);
+            activity.iniciarFragment(fragment, R.string.editar_cadastro);
         }
 
     }

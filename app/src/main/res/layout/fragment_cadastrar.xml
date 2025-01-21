@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="16dp"
-            android:hint="Nome Aluno">
+            android:hint="@string/nome_aluno">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editNome"
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:hint="Idade">
+            android:hint="@string/idade">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editIdade"
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:hint="Nota1">
+            android:hint="@string/nota1">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editNota1"
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:hint="Nota2">
+            android:hint="@string/nota2">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editNota2"
@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:hint="Nota3">
+            android:hint="@string/nota3">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editNota3"

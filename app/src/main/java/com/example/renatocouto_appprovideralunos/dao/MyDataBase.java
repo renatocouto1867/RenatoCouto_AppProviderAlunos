@@ -11,5 +11,4 @@ public abstract class MyDataBase extends RoomDatabase {
 
     public abstract AlunoDao alunoDao();
 
-
 }

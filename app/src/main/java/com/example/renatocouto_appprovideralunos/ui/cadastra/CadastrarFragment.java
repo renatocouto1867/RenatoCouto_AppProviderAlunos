@@ -145,7 +145,7 @@ public class CadastrarFragment extends Fragment {
         Fragment fragment = ListarFragment.newInstance();
         MainActivity activity = (MainActivity) getActivity();
         if (activity != null) {
-            activity.iniciarFragment(fragment,R.string.listar);
+            activity.iniciarFragment(fragment, R.string.listar);
         }
     }
 

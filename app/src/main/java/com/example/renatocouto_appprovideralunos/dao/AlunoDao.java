@@ -9,7 +9,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-
 import com.example.renatocouto_appprovideralunos.entity.Aluno;
 
 import java.util.List;
@@ -28,7 +27,6 @@ public interface AlunoDao {
 
     @Query("DELETE FROM alunos WHERE id = :id")
     int deletarPorId(long id);
-
 
 
     @Query("SELECT * FROM alunos WHERE id = :id")

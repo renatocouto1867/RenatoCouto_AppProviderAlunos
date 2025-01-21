@@ -11,8 +11,8 @@ import com.example.renatocouto_appprovideralunos.R;
 
 public class HomeFragment extends Fragment {
 
-   public HomeFragment() {
-        // Required empty public constructor
+    public HomeFragment() {
+
     }
 
 

@@ -14,6 +14,7 @@ import com.example.renatocouto_appprovideralunos.home.HomeFragment;
 import com.example.renatocouto_appprovideralunos.ui.cadastra.CadastrarFragment;
 import com.example.renatocouto_appprovideralunos.ui.listar.ListarFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+//<a href="https://www.flaticon.com/free-icons/student" title="student icons">Student icons created by Awicon - Flaticon</a>
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton botaoHome;
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             textTitulo.setText(titulo);
         }
     }
+
     private void ouvinteCliqueMenuHome() {
         botaoHome.setOnClickListener(view -> {
             iniciarFragment(HomeFragment.newInstance(), R.string.provedor_aluno);
